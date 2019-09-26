@@ -61,4 +61,16 @@ main {
   text-align: center;
 }
 
+main ul {
+  text-align: center;
+  padding: 0px;
+  margin: 20px 0px;
+  list-style-type: none;
+}
+
+main li {
+  display: inline-block;
+  padding: 0px 2px;
+}
+
 /*# sourceMappingURL=default.css.map */
