@@ -54,7 +54,5 @@
       </figure>
     </div>
   </main>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js">
-  <script src="src/hover-box.js"></script>
 </body>
 </html>
