@@ -9,14 +9,7 @@
   <main>
     <div>
       <h2>School</h2>
-      <a href="#" target="blank">
-        <div class="hoverbox">
-          <img src="images/electronics.jpg" alt="Mobile Audio System" class="hoverbox-layer_bottom" height="300px">
-          <div class="hoverbox-layer_top">
-            <div class="hoverbox-text">2014<br><br>GCSE Electronics Project<br><br>Mobile Audio System<div class="hoverbox-text_mobile">Tap again to follow link</div></div>
-          </div>
-        </div>
-      </a>
+      <img src="images/electronics.jpg" alt="Mobile Audio System" height="300px" style="" align="top">
       <img src="images/image50.jpg" height="300px">
     </div>
     <div>
