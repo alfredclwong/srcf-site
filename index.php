@@ -8,6 +8,7 @@
 <?php include("navbar.inc.php"); ?>
   <main>
     <h1>Alfred Wong</h1>
+    This site is a work in progress.
     <hr width=50% />
     <ul>
       <li>

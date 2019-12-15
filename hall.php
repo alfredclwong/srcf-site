@@ -7,7 +7,7 @@
 <body>
 <?php include("navbar.inc.php"); ?>
   <main>
-    <embed src="https://docs.google.com/gview?embedded=true&url=https://www.trin.cam.ac.uk/wp-content/uploads/Hall-menu-cur.pdf" width="800" height="575">
+    <embed src="https://docs.google.com/gview?embedded=true&url=https://www.trin.cam.ac.uk/wp-content/uploads/Hall-Menu-cur.pdf" width="80%" height="600px">
   </main>
 </body>
 </html>
