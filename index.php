@@ -8,7 +8,9 @@
 <?php include("navbar.inc.php"); ?>
   <main>
     <h1>Alfred Wong</h1>
-    This site is a work in progress.
+    Still pretending that I'll work on this site later.<br><br>
+    Checked out my <a href="projects">projects</a> and <a href="resume">resume</a>.<br>
+    Or <a href="#" onclick="window.open('projects'); window.open('resume');">both</a>!
     <hr width=50% />
     <ul>
       <li>

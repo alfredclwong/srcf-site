@@ -8,7 +8,7 @@
 <?php include("navbar.inc.php"); ?>
   <main>
     <div>
-      <h2>School</h2>
+      <h2>Engineering</h2>
       <figure>
         <img src="images/electronics.jpg" alt="Mobile Audio System" height="300px">
         <figcaption>Mobile Audio System</figcaption>
@@ -17,11 +17,15 @@
         <img src="images/image50.jpg" alt="Quadcopter Control" height="300px">
         <figcaption>Quadcopter Control</figcaption>
       </figure>
+      <figure>
+      	<img src="images/tetris.png" height="300px" "style=display:block"><img src="images/tetris_fpga.png" height="300px" "style=display:block">
+	<figcaption>Tetris</figcaption>
+      </figure>
     </div>
     <br>
     <hr width=90%>
     <div>
-      <h2>Mathematical Tripos (CATAM)</h2>
+      <h2>Mathematics</h2>
       <figure>
         <img src="images/ODEs.jpg" height="200px">
         <figcaption>Ordinary Differential Equations</figcaption>
@@ -42,7 +46,7 @@
     <br>
     <hr width=90%>
     <div>
-      <h2>Industry</h2>
+      <h2>Coding</h2>
       <figure>
         <img src="images/waterscope-improc.png" height="300px">
         <figcaption>CFU Tracker for Water Testing</figcaption>
@@ -51,8 +55,7 @@
       <figure>
         <img src="images/apv-mcts.png" height=300px">
         <figcaption>APV-MCTS for a newly released TCG</figcaption>
-      </figure>
-    </div>
+    <div>
   </main>
 </body>
 </html>
