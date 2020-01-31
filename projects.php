@@ -18,7 +18,7 @@
         <figcaption>Quadcopter Control</figcaption>
       </figure>
       <figure>
-      	<img src="images/tetris.png" height="300px" "style=display:block"><img src="images/tetris_fpga.png" height="300px" "style=display:block">
+      	<img src="images/tetris.png" height="300px" "style=display:block"><img src="images/tetris_fpga.jpg" height="300px" "style=display:block">
 	<figcaption>Tetris</figcaption>
       </figure>
     </div>
