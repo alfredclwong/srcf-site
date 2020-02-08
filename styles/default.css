@@ -26,6 +26,7 @@ nav li {
 
 nav a {
   display: block;
+  width: 100%;
   color: #D8DEE9;
   text-align: center;
   padding: 20px 15px;
@@ -46,7 +47,8 @@ nav .dropdown-content {
 
 nav .dropdown-content a {
   color: #3B4252;
-  padding: 10px 15px;
+  padding: 10px 5px;
+  text-align: center;
 }
 
 nav .dropdown-content a:hover {
