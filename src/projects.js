@@ -8,6 +8,8 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+import { descriptions } from './descriptions.js';
+
 var Projects = function (_React$Component) {
     _inherits(Projects, _React$Component);
 
@@ -17,21 +19,33 @@ var Projects = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (Projects.__proto__ || Object.getPrototypeOf(Projects)).call(this, props));
 
         _this.state = {
-            expanded: false
+            pageExpanded: false
         };
+        _this.toggleExpand = _this.toggleExpand.bind(_this);
         return _this;
     }
 
     _createClass(Projects, [{
+        key: 'toggleExpand',
+        value: function toggleExpand() {
+            this.setState(function (state) {
+                return { pageExpanded: !state.pageExpanded };
+            });
+        }
+    }, {
         key: 'renderProjects',
         value: function renderProjects() {
+            var projects = this.props.projects;
+            var pageExpanded = this.state.pageExpanded;
+
+
             var renderedProjects = [];
             var _iteratorNormalCompletion = true;
             var _didIteratorError = false;
             var _iteratorError = undefined;
 
             try {
-                for (var _iterator = Object.entries(this.props.projects)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+                for (var _iterator = Object.entries(projects)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
                     var _ref = _step.value;
 
                     var _ref2 = _slicedToArray(_ref, 2);
@@ -39,10 +53,10 @@ var Projects = function (_React$Component) {
                     var section = _ref2[0];
                     var info = _ref2[1];
 
-                    if (!this.state.expanded) {
-                        projects.push(React.createElement('br', null), React.createElement('br', null), React.createElement('hr', { width: '15%' }), React.createElement(
+                    if (!pageExpanded) {
+                        renderedProjects.push(React.createElement('hr', { key: section + ' line break', width: '20%' }), React.createElement(
                             'h2',
-                            null,
+                            { key: section },
                             section
                         ));
                     }
@@ -59,7 +73,14 @@ var Projects = function (_React$Component) {
                             var caption = _ref4[0];
                             var src = _ref4[1];
 
-                            projects.push(React.createElement(Thumbnail, { src: 'images/' + src, height: info.height, caption: caption }));
+                            renderedProjects.push(React.createElement(Project, {
+                                key: caption,
+                                src: 'images/' + src,
+                                caption: caption,
+                                height: info.height,
+                                pageExpanded: pageExpanded,
+                                toggleExpand: this.toggleExpand
+                            }));
                         }
                     } catch (err) {
                         _didIteratorError2 = true;
@@ -91,82 +112,16 @@ var Projects = function (_React$Component) {
                 }
             }
 
-            projects.shift(3);
+            if (!pageExpanded) renderedProjects.shift();
+            return renderedProjects;
         }
     }, {
         key: 'render',
         value: function render() {
-            var projects = [];
-            var _iteratorNormalCompletion3 = true;
-            var _didIteratorError3 = false;
-            var _iteratorError3 = undefined;
-
-            try {
-                for (var _iterator3 = Object.entries(this.props.projects)[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
-                    var _ref5 = _step3.value;
-
-                    var _ref6 = _slicedToArray(_ref5, 2);
-
-                    var section = _ref6[0];
-                    var info = _ref6[1];
-
-                    projects.push(React.createElement(
-                        'h2',
-                        null,
-                        section
-                    ));
-                    var _iteratorNormalCompletion4 = true;
-                    var _didIteratorError4 = false;
-                    var _iteratorError4 = undefined;
-
-                    try {
-                        for (var _iterator4 = Object.entries(info.projects)[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
-                            var _ref7 = _step4.value;
-
-                            var _ref8 = _slicedToArray(_ref7, 2);
-
-                            var caption = _ref8[0];
-                            var src = _ref8[1];
-
-                            projects.push(React.createElement(Thumbnail, { src: 'images/' + src, height: info.height, caption: caption }));
-                        }
-                    } catch (err) {
-                        _didIteratorError4 = true;
-                        _iteratorError4 = err;
-                    } finally {
-                        try {
-                            if (!_iteratorNormalCompletion4 && _iterator4.return) {
-                                _iterator4.return();
-                            }
-                        } finally {
-                            if (_didIteratorError4) {
-                                throw _iteratorError4;
-                            }
-                        }
-                    }
-
-                    projects.push(React.createElement('br', null), React.createElement('br', null), React.createElement('hr', { width: '15%' }));
-                }
-            } catch (err) {
-                _didIteratorError3 = true;
-                _iteratorError3 = err;
-            } finally {
-                try {
-                    if (!_iteratorNormalCompletion3 && _iterator3.return) {
-                        _iterator3.return();
-                    }
-                } finally {
-                    if (_didIteratorError3) {
-                        throw _iteratorError3;
-                    }
-                }
-            }
-
-            projects.pop(3);
             return React.createElement(
                 'div',
                 null,
-                projects
+                this.renderProjects()
             );
         }
     }]);
@@ -174,63 +129,114 @@ var Projects = function (_React$Component) {
     return Projects;
 }(React.Component);
 
-var Thumbnail = function (_React$Component2) {
-    _inherits(Thumbnail, _React$Component2);
+var Project = function (_React$Component2) {
+    _inherits(Project, _React$Component2);
 
-    function Thumbnail(props) {
-        _classCallCheck(this, Thumbnail);
+    function Project(props) {
+        _classCallCheck(this, Project);
 
-        var _this2 = _possibleConstructorReturn(this, (Thumbnail.__proto__ || Object.getPrototypeOf(Thumbnail)).call(this, props));
+        var _this2 = _possibleConstructorReturn(this, (Project.__proto__ || Object.getPrototypeOf(Project)).call(this, props));
 
         _this2.state = {
-            expanded: false,
-            invisible: false
+            expanded: false
         };
         return _this2;
     }
 
-    _createClass(Thumbnail, [{
-        key: 'render',
-        value: function render() {
+    _createClass(Project, [{
+        key: 'renderNormal',
+        value: function renderNormal() {
             var _this3 = this;
 
-            if (this.state.invisible) return;
+            var _props = this.props,
+                src = _props.src,
+                caption = _props.caption,
+                height = _props.height,
+                toggleExpand = _props.toggleExpand;
+
+
             return React.createElement(
                 'figure',
                 null,
-                React.createElement('input', {
-                    type: 'image',
-                    src: this.props.src,
-                    alt: this.props.caption,
-                    height: this.props.height,
+                React.createElement('input', { type: 'image', src: src, alt: caption, height: height,
                     onClick: function onClick() {
-                        _this3.setState(function (state) {
-                            return { expanded: !state.expanded };
+                        _this3.setState({ expanded: true }, function () {
+                            return toggleExpand();
                         });
                     }
                 }),
                 React.createElement(
                     'figcaption',
                     null,
-                    this.props.caption
+                    caption
                 )
             );
         }
+    }, {
+        key: 'renderExpanded',
+        value: function renderExpanded() {
+            var _this4 = this;
+
+            var _props2 = this.props,
+                src = _props2.src,
+                caption = _props2.caption,
+                height = _props2.height,
+                toggleExpand = _props2.toggleExpand;
+
+
+            return React.createElement(
+                'div',
+                { style: {
+                        position: 'relative',
+                        margin: 'auto',
+                        height: '100vh',
+                        width: '61.8%',
+                        background: 'rgba(0, 0, 0, 0.05)',
+                        'padding-top': '10px'
+                    } },
+                React.createElement(
+                    'h2',
+                    null,
+                    caption
+                ),
+                React.createElement('a', { href: '#', className: 'close', style: { top: '25px', right: '25px' }, onClick: function onClick() {
+                        _this4.setState({ expanded: false }, function () {
+                            return toggleExpand();
+                        });
+                    } }),
+                React.createElement('img', { src: src, alt: caption, height: height }),
+                descriptions[caption]
+            );
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var expanded = this.state.expanded;
+            var pageExpanded = this.props.pageExpanded;
+
+
+            if (pageExpanded) {
+                if (!expanded) return null;
+                return this.renderExpanded();
+            } else {
+                return this.renderNormal();
+            }
+        }
     }]);
 
-    return Thumbnail;
+    return Project;
 }(React.Component);
 
 var projects = {
-    'Engineering': {
+    'EECS': {
         'projects': {
             'Mobile Audio System': 'electronics.jpg',
             'Quadcopter Control': 'image50.jpg',
-            'Tetris': 'tetris_diagram.png'
+            'Embedded Tetris': 'tetris_diagram.png'
         },
         'height': '280px'
     },
-    'Mathematics': {
+    'Applied Maths': {
         'projects': {
             'Ordinary Differential Equations': 'ODEs.jpg',
             'Golden Section Search': 'gss.jpg',
@@ -239,7 +245,7 @@ var projects = {
         },
         'height': '200px'
     },
-    'Computer Science': {
+    'CV/ML/AI': {
         'projects': {
             'CFU Tracker for Water Testing': 'waterscope-improc.png',
             'APV-MCTS for a newly released TCG': 'apv-mcts.png'

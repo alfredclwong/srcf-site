@@ -1,83 +1,141 @@
+import { descriptions } from './descriptions.js';
+
 class Projects extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            expanded: false
+            pageExpanded: false
         };
+        this.toggleExpand = this.toggleExpand.bind(this);
+    }
+
+    toggleExpand() {
+        this.setState((state) => { return { pageExpanded: !state.pageExpanded } });
     }
 
     renderProjects() {
+        const {
+            projects,
+        } = this.props;
+        const {
+            pageExpanded,
+        } = this.state;
+
         let renderedProjects = [];
-        for (const [section, info] of Object.entries(this.props.projects)) {
-            if (!this.state.expanded) {
-                projects.push(<br />, <br />, <hr width='15%' />, <h2>{section}</h2>);
+        for (const [section, info] of Object.entries(projects)) {
+            if (!pageExpanded) {
+                renderedProjects.push(
+                    <hr key={section+' line break'} width='20%' />,
+                    <h2 key={section}>{section}</h2>
+                );
             }
             for (const [caption, src] of Object.entries(info.projects)) {
-                projects.push(
-                    <Thumbnail src={'images/'+src} height={info.height} caption={caption} />
+                renderedProjects.push(
+                    <Project
+                        key={caption}
+                        src={'images/'+src}
+                        caption={caption}
+                        height={info.height}
+                        pageExpanded={pageExpanded}
+                        toggleExpand={this.toggleExpand}
+                    />
                 );
             }
         }
-        projects.shift(3);
+        if (!pageExpanded)
+            renderedProjects.shift();
+        return renderedProjects;
     }
 
     render() {
-        let projects = [];
-        for (const [section, info] of Object.entries(this.props.projects)) {
-            projects.push(<h2>{section}</h2>);
-            for (const [caption, src] of Object.entries(info.projects)) {
-                projects.push(
-                    <Thumbnail src={'images/'+src} height={info.height} caption={caption} />
-                );
-            }
-            projects.push(<br />, <br />, <hr width='15%' />);
-        }
-        projects.pop(3);
-        return <div>{projects}</div>;
+        return <div>{this.renderProjects()}</div>;
     }
 }
 
-class Thumbnail extends React.Component {
+class Project extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             expanded: false,
-            invisible: false,
         };
     }
 
-    render() {
-        if (this.state.invisible)
-            return;
+    renderNormal() {
+        const {
+            src,
+            caption,
+            height,
+            toggleExpand,
+        } = this.props;
+
         return (
             <figure>
-                <input
-                    type='image'
-                    src={this.props.src}
-                    alt={this.props.caption}
-                    height={this.props.height}
-                    onClick={() => {
-                        this.setState((state) => {
-                            return { expanded: !state.expanded }
-                        });
-                    }}
+                <input type='image' src={src} alt={caption} height={height}
+                        onClick={() => {
+                            this.setState({ expanded: true }, () => toggleExpand());
+                        }}
                 />
-                <figcaption>{this.props.caption}</figcaption>
+                <figcaption>{caption}</figcaption>
             </figure>
         );
+    }
+
+    renderExpanded() {
+        const {
+            src,
+            caption,
+            height,
+            toggleExpand,
+        } = this.props;
+
+        return (
+            <div style={{
+                position: 'relative',
+                margin: 'auto',
+                height: '100vh',
+                width: '61.8%',
+                background: 'rgba(0, 0, 0, 0.05)',
+                'padding-top': '10px',
+            }}>
+                <h2>{caption}</h2>
+                <a href='#' className='close' style={{ top: '25px', right: '25px', }} onClick={
+                    () => {
+                        this.setState({ expanded: false }, () => toggleExpand());
+                    }
+                }/>
+                <img src={src} alt={caption} height={height} />
+                {descriptions[caption]}
+            </div>
+        );
+    }
+
+    render() {
+        const {
+            expanded,
+        } = this.state;
+        const {
+            pageExpanded,
+        } = this.props;
+
+        if (pageExpanded) {
+            if (!expanded) return null;
+            return this.renderExpanded();
+        } else {
+            return this.renderNormal();
+        }
     }
 }
 
 const projects = {
-    'Engineering': {
+    'EECS': {
         'projects': {
             'Mobile Audio System': 'electronics.jpg',
             'Quadcopter Control': 'image50.jpg',
-            'Tetris': 'tetris_diagram.png',
+            'Embedded Tetris': 'tetris_diagram.png',
         },
         'height': '280px',
     },
-    'Mathematics': {
+    'Applied Maths': {
         'projects': {
             'Ordinary Differential Equations': 'ODEs.jpg',
             'Golden Section Search': 'gss.jpg',
@@ -86,7 +144,7 @@ const projects = {
         },
         'height': '200px',
     },
-    'Computer Science': {
+    'CV/ML/AI': {
         'projects': {
             'CFU Tracker for Water Testing': 'waterscope-improc.png',
             'APV-MCTS for a newly released TCG': 'apv-mcts.png',
