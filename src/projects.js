@@ -30,6 +30,8 @@ var Projects = function (_React$Component) {
         value: function toggleExpand() {
             this.setState(function (state) {
                 return { pageExpanded: !state.pageExpanded };
+            }, function () {
+                return window.scrollTo(0, 0);
             });
         }
     }, {
@@ -81,6 +83,7 @@ var Projects = function (_React$Component) {
                                 pageExpanded: pageExpanded,
                                 toggleExpand: this.toggleExpand
                             }));
+                            if (!pageExpanded && caption == 'Intro to NLP (BMM/LDA)') renderedProjects.push(React.createElement('br', null));
                         }
                     } catch (err) {
                         _didIteratorError2 = true;
@@ -228,6 +231,9 @@ var Project = function (_React$Component2) {
     return Project;
 }(React.Component);
 
+// TODO move to and merge with descriptions.jsx
+
+
 var projects = {
     'EECS': {
         'projects': {
@@ -239,6 +245,9 @@ var projects = {
     },
     'Applied Maths': {
         'projects': {
+            'Gaussian Processes': 'gauss-proc.jpg',
+            'Gibbs Sampling (MCMC)': 'mcmc.png',
+            'Intro to NLP (BMM/LDA)': 'bmm.png',
             'Ordinary Differential Equations': 'ODEs.jpg',
             'Golden Section Search': 'gss.jpg',
             'Three Body Problem': '3bp.jpg',
@@ -246,7 +255,7 @@ var projects = {
         },
         'height': '200px'
     },
-    'CV/ML/AI': {
+    'CV-ML-AI': {
         'projects': {
             'CFU Tracker for Water Testing': 'waterscope-improc.png',
             'APV-MCTS for a newly released TCG': 'apv-mcts.png'
