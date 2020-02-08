@@ -241,7 +241,7 @@ var projects = {
             'Quadcopter Control': 'image50.jpg',
             'Embedded Tetris': 'tetris_diagram.png'
         },
-        'height': '280px'
+        'height': '250px'
     },
     'Applied Maths': {
         'projects': {
@@ -253,14 +253,14 @@ var projects = {
             'Three Body Problem': '3bp.jpg',
             'Public-Key Cryptography': 'crypt.jpg'
         },
-        'height': '200px'
+        'height': '180px'
     },
     'CV-ML-AI': {
         'projects': {
             'CFU Tracker for Water Testing': 'waterscope-improc.png',
             'APV-MCTS for a newly released TCG': 'apv-mcts.png'
         },
-        'height': '300px'
+        'height': '250px'
     }
 };
 
