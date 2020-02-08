@@ -7,7 +7,8 @@
 <body>
 <?php include("navbar.inc.php"); ?>
   <main>
-    <div>
+    <div id="projects"></div>
+    <!--div>
       <h2>Engineering</h2>
       <figure>
         <img src="images/electronics.jpg" alt="Mobile Audio System" height="300px">
@@ -51,11 +52,14 @@
         <img src="images/waterscope-improc.png" height="300px">
         <figcaption>CFU Tracker for Water Testing</figcaption>
       </figure>
-      <!--img src="images/chess.jpg" height="300px"-->
       <figure>
         <img src="images/apv-mcts.png" height=300px">
         <figcaption>APV-MCTS for a newly released TCG</figcaption>
-    <div>
+    <div-->
   </main>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="src/projects.js"></script>
 </body>
 </html>
