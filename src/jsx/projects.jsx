@@ -88,6 +88,8 @@ class Project extends React.Component {
             toggleExpand,
         } = this.props;
 
+        const imgStyle = caption == 'APV-MCTS for a newly released TCG' ?
+            { 'width': '90%' } : { 'height': height };
         return (
             <div style={{
                 position: 'relative',
@@ -95,15 +97,15 @@ class Project extends React.Component {
                 height: '100vh',
                 width: '61.8%',
                 background: 'rgba(0, 0, 0, 0.05)',
-                'padding-top': '10px',
+                paddingTop: '10px',
             }}>
                 <h2>{caption}</h2>
-                <a href='#' className='close' style={{ top: '25px', right: '25px', }} onClick={
+                <a href='#' className='close' style={{ top: '5px', right: '5px', }} onClick={
                     () => {
                         this.setState({ expanded: false }, () => toggleExpand());
                     }
                 }/>
-                <img src={src} alt={caption} height={height} />
+                <img src={src} alt={caption} style={imgStyle} />
                 {descriptions[caption]}
             </div>
         );

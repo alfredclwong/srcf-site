@@ -184,6 +184,7 @@ var Project = function (_React$Component2) {
                 toggleExpand = _props2.toggleExpand;
 
 
+            var imgStyle = caption == 'APV-MCTS for a newly released TCG' ? { 'width': '90%' } : { 'height': height };
             return React.createElement(
                 'div',
                 { style: {
@@ -192,19 +193,19 @@ var Project = function (_React$Component2) {
                         height: '100vh',
                         width: '61.8%',
                         background: 'rgba(0, 0, 0, 0.05)',
-                        'padding-top': '10px'
+                        paddingTop: '10px'
                     } },
                 React.createElement(
                     'h2',
                     null,
                     caption
                 ),
-                React.createElement('a', { href: '#', className: 'close', style: { top: '25px', right: '25px' }, onClick: function onClick() {
+                React.createElement('a', { href: '#', className: 'close', style: { top: '5px', right: '5px' }, onClick: function onClick() {
                         _this4.setState({ expanded: false }, function () {
                             return toggleExpand();
                         });
                     } }),
-                React.createElement('img', { src: src, alt: caption, height: height }),
+                React.createElement('img', { src: src, alt: caption, style: imgStyle }),
                 descriptions[caption]
             );
         }
