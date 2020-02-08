@@ -19,7 +19,8 @@
   "dependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
-    "nord": "^0.2.1"
+    "nord": "^0.2.1",
+    "pdfjs-dist": "^2.2.228"
   },
   "devDependencies": {},
   "description": ""
